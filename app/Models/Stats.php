@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stats extends Model
 {
-    use HasFactory;
+    protected $table = 'stats';
+
+    protected $guarded = ['id'];
 }

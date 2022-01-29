@@ -17,8 +17,8 @@ class CreateLinksTable extends Migration
             $table->id();
             $table->string('long_url');
             $table->string('short_url');
-            $table->text('title');
-            $table->json('tags');
+            $table->text('title')->nullable()->default(null);
+            $table->json('tags')->nullable()->default(null);
             $table->boolean('is_active');
             $table->timestamps();
         });
