@@ -13,7 +13,12 @@ class Link extends Model
 
     public $hidden = ['id', 'is_active', 'created_at', 'updated_at'];
 
-    public $timestamps = false;
+    public $timestamps = true;
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
 
     public function stats()
     {
@@ -35,17 +40,17 @@ class Link extends Model
         parent::boot();
         static::creating(function ($link) {
             //@var $link Link
-            $link->short_url = self::generateHash();
+            $link->short_url = self::generateHash($link->long_url);
         });
     }
 
-    private static function generateHash()
+    private static function generateHash($long_url)
     {
-        $hash = substr(uniqid(), 8);
-/*        do{
-            $check = self::where('x', $hash);
-            $hash = substr(uniqid(), 13 - LENGTH);
-        } while ($check);*/
+        do{
+            $hash = substr(uniqid(), 6);
+            $check = self::active()->where('short_url', $hash)->where('long_url', $long_url)->get()->count();
+        } while ($check);
+
         return $hash;
     }
 }

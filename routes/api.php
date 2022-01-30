@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ApiController as ApiControllerAlias;
+use App\Http\Controllers\LinksController as ApiControllerAlias;
 use App\Http\Controllers\IndexController as IndexControllerAlias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

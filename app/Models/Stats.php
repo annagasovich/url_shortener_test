@@ -10,4 +10,6 @@ class Stats extends Model
     protected $table = 'stats';
 
     protected $guarded = ['id'];
+
+    public $timestamps = true;
 }

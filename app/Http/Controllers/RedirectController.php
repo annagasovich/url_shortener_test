@@ -12,7 +12,7 @@ class RedirectController extends Controller
 {
     public function index(Request $request, $id)
     {
-        $link = Link::where('short_url', $id)->get()->first();
+        $link = Link::where('short_url', $id)->active()->get()->first();
         $stats = new Stats([
             'url_id' => $link->id,
             'ip' => $request->ip(),
