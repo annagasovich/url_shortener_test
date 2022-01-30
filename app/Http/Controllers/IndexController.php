@@ -7,6 +7,9 @@ use Illuminate\Routing\Controller;
 
 class IndexController extends Controller
 {
+    /**
+     * @return string
+     */
     public function index()
     {
         return view('index');

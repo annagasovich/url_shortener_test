@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Validator;
 class LinksController extends Controller
 {
 
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function createLink(Request $request)
     {
         $request_data = $request->json()->all();
@@ -56,7 +60,14 @@ class LinksController extends Controller
         return $response_data;
 
     }
-    public function updateLink(Request $request, $id, $data = null)
+
+    /**
+     * @param Request $request
+     * @param string $id
+     * @param array|null $data
+     * @return Response|array
+     */
+    public function updateLink(Request $request, string $id, array $data = null)
     {
         $link = Link::where('short_url', $id)->get()->first();
         $request_data = $request->json()->all();
@@ -89,7 +100,12 @@ class LinksController extends Controller
 
         return $response_data;
     }
-    public function deleteLink($id)
+
+    /**
+     * @param string $id
+     * @return Response|array
+     */
+    public function deleteLink(string $id)
     {
         $link = Link::where('short_url', $id)->active()->get()->first();
 
@@ -108,6 +124,11 @@ class LinksController extends Controller
 
         return $response_data;
     }
+
+    /**
+     * @param Request $request
+     * @return Response|array
+     */
     public function getLinks(Request $request)
     {
         $request_data = $request->json()->all();
@@ -132,7 +153,11 @@ class LinksController extends Controller
         return $response_data;
     }
 
-    public function getLink($id)
+    /**
+     * @param string $id
+     * @return Response|array
+     */
+    public function getLink(string $id)
     {
         $link = Link::where('short_url', $id)->active()->get()->first();
 
@@ -142,6 +167,10 @@ class LinksController extends Controller
         return $link;
     }
 
+    /**
+     * @param $item
+     * @return Validator
+     */
     private function validator($item) {
         return Validator::make($item, [
             'long_url' => 'required|url',

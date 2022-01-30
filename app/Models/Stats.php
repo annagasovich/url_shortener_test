@@ -15,6 +15,9 @@ class Stats extends Model
 
     public $timestamps = true;
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function link()
     {
         return $this->belongsTo(Link::class, 'url_id')->active();

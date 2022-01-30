@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\DB;
 
 class StatsController extends Controller
 {
+    /**
+     * @return array
+     */
     public function getStats()
     {
         $stats = Stats::with(['link' => function ($q) {
@@ -27,7 +30,11 @@ class StatsController extends Controller
         return [compact('total_views', 'unique_views', 'date')];
     }
 
-    public function getStatsByLink($id)
+    /**
+     * @param string $id
+     * @return Response|array
+     */
+    public function getStatsByLink(string $id)
     {
         $link = Link::where('short_url', $id)->get()->first();
 

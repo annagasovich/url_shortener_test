@@ -20,12 +20,10 @@ class Link extends Model
         return $query->where('is_active', true);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function stats()
-    {
-        return $this->hasMany(Stats::class);
-    }
-
-    public function unique_stats()
     {
         return $this->hasMany(Stats::class);
     }
@@ -44,7 +42,11 @@ class Link extends Model
         });
     }
 
-    private static function generateHash($long_url)
+    /**
+     * @param string $long_url
+     * @return string
+     */
+    private static function generateHash(string $long_url)
     {
         do{
             $hash = substr(uniqid(), 6);

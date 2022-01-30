@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Redirect;
 
 class RedirectController extends Controller
 {
-    public function index(Request $request, $id)
+    /**
+     * @param Request $request
+     * @param string $id
+     * @return Redirect|string
+     */
+    public function index(Request $request, string $id)
     {
         $link = Link::where('short_url', $id)->active()->get()->first();
 
