@@ -21,19 +21,26 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexControllerAlias::class, 'index']);
 
 
-Route::post('/links',           [ApiControllerAlias::class, 'createLink']);
+Route::post('/links',           [ApiControllerAlias::class, 'createLink'])
+    ->middleware('simple_auth');
 Route::patch('/links/{id}',     [ApiControllerAlias::class, 'updateLink'])
-    ->where('id', '[a-z0-9]+');
+    ->where('id', '[a-z0-9]+')
+    ->middleware('simple_auth');
 Route::delete('/links/{id}',    [ApiControllerAlias::class, 'deleteLink'])
-    ->where('id', '[a-z0-9]+');
+    ->where('id', '[a-z0-9]+')
+    ->middleware('simple_auth');
 
-Route::get('/links',            [ApiControllerAlias::class, 'getLinks']);
+Route::get('/links',            [ApiControllerAlias::class, 'getLinks'])
+    ->middleware('simple_auth');
 Route::get('/links/{id}',       [ApiControllerAlias::class, 'getLink'])
-    ->where('id', '[a-z0-9]+');
+    ->where('id', '[a-z0-9]+')
+    ->middleware('simple_auth');
 
-Route::get('/stats',            [ApiControllerAlias::class, 'getStats']);
-Route::get('/stats/{id}',       [ApiControllerAlias::class, 'getStatsByLink'])
-    ->where('id', '[a-z0-9]+');
+Route::get('/stats',            [StatsControllerAlias::class, 'getStats'])
+    ->middleware('simple_auth');
+Route::get('/stats/{id}',       [StatsControllerAlias::class, 'getStatsByLink'])
+    ->where('id', '[a-z0-9]+')
+    ->middleware('simple_auth');
 
 //redirect
 Route::get('/{url}', [RedirectController::class, 'index'])
