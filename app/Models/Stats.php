@@ -11,5 +11,12 @@ class Stats extends Model
 
     protected $guarded = ['id'];
 
+    protected $visible = ['ip', 'user_agent', 'link'];
+
     public $timestamps = true;
+
+    public function link()
+    {
+        return $this->belongsTo(Link::class, 'url_id')->active();
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\LinksController as ApiControllerAlias;
+use App\Http\Controllers\Api\StatsController as StatsControllerAlias;
 use App\Http\Controllers\IndexController as IndexControllerAlias;
 use App\Http\Controllers\RedirectController;
 use Illuminate\Support\Facades\Route;

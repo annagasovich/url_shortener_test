@@ -13,6 +13,10 @@ class RedirectController extends Controller
     public function index(Request $request, $id)
     {
         $link = Link::where('short_url', $id)->active()->get()->first();
+
+        if(!$link)
+            return view('404');
+
         $stats = new Stats([
             'url_id' => $link->id,
             'ip' => $request->ip(),
